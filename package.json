@@ -1,0 +1,49 @@
+{
+  "name": "@builtwithjavascript/vue-toast",
+  "version": "1.0.1",
+  "scripts": {
+    "dev": "vite",
+    "watch": "vite build --watch",
+    "clean": "rm -rf ./dist",
+    "build-types": "vue-tsc --declaration --emitDeclarationOnly --outDir ./dist",
+    "build-lib": "vite build",
+    "build": "npm run pretty && npm run clean && npm run build-lib && npm run build-types",
+    "all": "npm run build",
+    "pub": "npm publish --access public",
+    "preversion": "npm run clean; npm run pretty;",
+    "version": "",
+    "postversion": "npm run build",
+    "version-patch": "npm version patch -m \"Patch version\"",
+    "version-minor": "npm version minor -m \"Minor version\"",
+    "version-major": "npm version major -m \"Major version\"",
+    "pretty": "prettier -w \"./src/**/*.*{ts,vue,svelte,tsx,css,scss,html}\""
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/node": "^22.3.0",
+    "@vitejs/plugin-vue": "^5.1.2",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.1",
+    "vue": "^3.4.38",
+    "vue-tsc": "^2.0.29"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/vue-toast.es.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/vue-toast.umd.js"
+      },
+      "types": "./dist/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "types": "./dist/index.d.ts",
+  "main": "./dist/vue-toast.umd.js",
+  "module": "./dist/vue-toast.es.js"
+}
