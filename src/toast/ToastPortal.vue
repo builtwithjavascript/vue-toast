@@ -141,7 +141,7 @@
                 :is="state.currentToastComponent"
                 :id="item.id"
                 addCss="mt-2 pointer-events-auto shadow-black shadow-md"
-                :alertType="item.alertType"
+                :category="item.category"
                 :message="item.message"
                 @close="onCloseToast"
               />
