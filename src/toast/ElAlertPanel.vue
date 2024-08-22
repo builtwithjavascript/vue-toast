@@ -81,7 +81,6 @@
   <div :class="cssClass">
     <div class="flex">
       <div class="flex-shrink-0">
-        <!-- Heroicon name: solid/check-circle -->
         <svg
           :class="cssIconClass"
           xmlns="http://www.w3.org/2000/svg"
@@ -97,13 +96,12 @@
         </svg>
       </div>
       <div class="ml-3">
-        <p :class="cssTextClass">{{ props.message }}</p>
+        <p :class="cssTextClass">{{ props.message }} [{{ $props.type }}]</p>
       </div>
       <div class="ml-auto pl-3">
         <div class="-mx-1.5 -my-1.5">
           <button type="button" :class="cssButtonCloseClass" @click="onCloseClicked">
             <span class="sr-only">Dismiss</span>
-            <!-- Heroicon name: solid/x -->
             <svg
               class="h-5 w-5"
               xmlns="http://www.w3.org/2000/svg"
