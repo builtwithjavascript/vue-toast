@@ -16,7 +16,8 @@
     "version-patch": "npm version patch -m \"Patch version\"",
     "version-minor": "npm version minor -m \"Minor version\"",
     "version-major": "npm version major -m \"Major version\"",
-    "pretty": "prettier -w \"./src/**/*.*{ts,vue,svelte,tsx,css,scss,html}\""
+    "pretty": "prettier -w \"./src/**/*.*{ts,vue,svelte,tsx,css,scss,html}\"",
+    "push": "npm run pretty; git add .; git commit -m \"Latest\"; git push"
   },
   "files": [
     "dist"
