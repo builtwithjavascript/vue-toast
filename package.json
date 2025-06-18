@@ -1,6 +1,6 @@
 {
   "name": "@builtwithjavascript/vue-toast",
-  "version": "1.1.1",
+  "version": "1.1.3",
   "scripts": {
     "clean": "rm -rf ./dist",
     "build-types": "vue-tsc --declaration --emitDeclarationOnly --outDir ./dist",
