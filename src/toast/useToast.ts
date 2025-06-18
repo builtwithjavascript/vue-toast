@@ -12,8 +12,7 @@ const getNextId = () => {
 export type IToastParams = {
   id?: string
   group?: string
-  type?: 'ghost' | 'normal'
-  category?: string
+  alertType?: string
   message: string
   sticky?: boolean
   timeout?: number
@@ -26,8 +25,7 @@ const showToast = async (params: IToastParams) => {
     ...params,
     id: getNextId(),
     group: params.group || 'top',
-    type: params.type || 'normal',
-    category: params.category || 'info',
+    alertType: params.alertType || 'info',
     sticky: params.sticky || false,
   } as IToastParams
 

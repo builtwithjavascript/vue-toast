@@ -19,7 +19,7 @@ export default defineConfig({
       fileName: (format) => `vue-toast.${format}.js`,
     },
     rollupOptions: {
-      // vue should not be bundled with the cmoponent library
+      // vue should not be bundle with the cmoponent library
       // tell vite that this is an external dependency
       external: ['vue'],
       output: {

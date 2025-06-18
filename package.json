@@ -1,7 +1,9 @@
 {
   "name": "@builtwithjavascript/vue-toast",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "scripts": {
+    "dev": "vite",
+    "watch": "vite build --watch",
     "clean": "rm -rf ./dist",
     "build-types": "vue-tsc --declaration --emitDeclarationOnly --outDir ./dist",
     "build-lib": "vite build",
@@ -14,35 +16,31 @@
     "version-patch": "npm version patch -m \"Patch version\"",
     "version-minor": "npm version minor -m \"Minor version\"",
     "version-major": "npm version major -m \"Major version\"",
-    "pretty": "prettier -w \"./src/**/*.*{ts,vue,svelte,tsx,css,scss,html}\"",
-    "push": "npm run pretty; git add .; git commit -m \"Latest\"; git push"
+    "pretty": "prettier -w \"./src/**/*.*{ts,vue,svelte,tsx,css,scss,html}\""
   },
   "files": [
     "dist"
   ],
-  "devDependencies": {
-    "@types/node": "^22.3.0",
-    "@vitejs/plugin-vue": "^5.1.2",
-    "typescript": "^5.5.4",
-    "vite": "^5.4.1",
-    "vue": "^3.4.38",
-    "vue-tsc": "^2.0.29"
-  },
+  "types": "./dist/index.d.ts",
+  "main": "./dist/vue-toast.umd.js",
+  "module": "./dist/vue-toast.es.js",
   "exports": {
     ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/vue-toast.es.js"
-      },
-      "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/vue-toast.umd.js"
-      },
+      "import": [
+        "./dist/vue-toast.es.js"
+      ],
+      "require": "./dist/vue-toast.umd.js",
       "types": "./dist/index.d.ts"
     },
     "./package.json": "./package.json"
   },
-  "types": "./dist/index.d.ts",
-  "main": "./dist/vue-toast.umd.js",
-  "module": "./dist/vue-toast.es.js"
+  "devDependencies": {
+    "@babel/types": "^7.25.2",
+    "@types/node": "^22.1.0",
+    "@vitejs/plugin-vue": "^5.1.2",
+    "typescript": "^5.5.4",
+    "vite": "^5.3.5",
+    "vue": "^3.4.35",
+    "vue-tsc": "^2.0.29"
+  }
 }
