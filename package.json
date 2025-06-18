@@ -2,8 +2,6 @@
   "name": "@builtwithjavascript/vue-toast",
   "version": "1.1.1",
   "scripts": {
-    "dev": "vite",
-    "watch": "vite build --watch",
     "clean": "rm -rf ./dist",
     "build-types": "vue-tsc --declaration --emitDeclarationOnly --outDir ./dist",
     "build-lib": "vite build",
@@ -26,21 +24,20 @@
   "module": "./dist/vue-toast.es.js",
   "exports": {
     ".": {
+      "require": "./dist/vue-toast.umd.js",
+      "types": "./dist/index.d.ts",
       "import": [
         "./dist/vue-toast.es.js"
-      ],
-      "require": "./dist/vue-toast.umd.js",
-      "types": "./dist/index.d.ts"
+      ]
     },
     "./package.json": "./package.json"
   },
   "devDependencies": {
-    "@babel/types": "^7.25.2",
-    "@types/node": "^22.1.0",
-    "@vitejs/plugin-vue": "^5.1.2",
-    "typescript": "^5.5.4",
-    "vite": "^5.3.5",
-    "vue": "^3.4.35",
-    "vue-tsc": "^2.0.29"
+    "@types/node": "^24.0.3",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vue": "^3.5.17",
+    "vue-tsc": "^2.2.10"
   }
 }
