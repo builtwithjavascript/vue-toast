@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { defineComponent, reactive, computed, onMounted, shallowRef } from 'vue'
-  import type { IToastParams } from './useToast'
+  import type { IToastParams } from './types'
   import { eventBus, eventKeys } from './event-bus'
   import ElAlertPanel from './ElAlertPanel.vue'
 
@@ -141,7 +141,8 @@
                 :is="state.currentToastComponent"
                 :id="item.id"
                 addCss="mt-2 pointer-events-auto shadow-black shadow-md"
-                :alertType="item.alertType"
+                :type="item.type"
+                :category="item.category"
                 :message="item.message"
                 @close="onCloseToast"
               />

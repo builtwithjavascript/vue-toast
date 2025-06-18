@@ -1,11 +1,13 @@
 <script setup lang="ts">
   import { computed } from 'vue'
   import { alertCssStrategy, iconCssStrategy, textCssStrategy, buttonCloseCssStrategy } from './AlertCssStrategy'
+  import type { TToastType } from './types'
 
   type Props = {
     testid?: string
     id: string
-    alertType: string
+    type: TToastType
+    category: string
     message: string
     addCss?: string
   }
@@ -13,7 +15,8 @@
   const props = withDefaults(defineProps<Props>(), {
     testid: 'not-set',
     id: 'not-set',
-    alertType: 'info',
+    type: 'normal',
+    cartegory: 'info',
     message: 'not-set',
   })
 
@@ -21,12 +24,24 @@
     (e: 'close', id: string): any
   }>()
 
+  const getCssFromStrategyMap = (strategyMap: Map<string, string>) => {
+    const type = props.type || 'normal'
+    const category = props.category || 'info'
+    let template = ''
+    if (strategyMap.has(type)) {
+      template = `${strategyMap.get(type)}`
+    } else {
+      template = `${strategyMap.get('normal')}`
+    }
+    return template.replaceAll(`[category]`, category).trim()
+  }
+
   // a computed property to return a different css class based on the selected value
   const cssClass = computed((): string => {
     const result = ['rounded-md p-4 h-fit shadow shadow-md']
 
-    // these are the CSS classes based on the alertType
-    result.push(alertCssStrategy.get(props.alertType) as string)
+    // these are the CSS classes based on the type
+    result.push(getCssFromStrategyMap(alertCssStrategy))
 
     // addCss will have additional CSS classes
     // we want to apply from where we consume this component
@@ -39,22 +54,23 @@
 
   const cssTextClass = computed((): string => {
     const result = ['text-sm font-medium']
-    // these are the CSS classes based on the alertType
-    result.push(textCssStrategy.get(props.alertType) as string)
+    // these are the CSS classes based on the type
+    result.push(getCssFromStrategyMap(textCssStrategy))
+
     return result.join(' ').trim()
   })
 
   const cssIconClass = computed((): string => {
     const result = ['h-5 w-5']
-    // these are the CSS classes based on the alertType
-    result.push(iconCssStrategy.get(props.alertType) as string)
+    // these are the CSS classes based on the type
+    result.push(getCssFromStrategyMap(iconCssStrategy))
     return result.join(' ').trim()
   })
 
   const cssButtonCloseClass = computed((): string => {
     const result = ['cursor-pointer inline-flex rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2']
-    // these are the CSS classes based on the alertType
-    result.push(buttonCloseCssStrategy.get(props.alertType) as string)
+    // these are the CSS classes based on the type
+    result.push(getCssFromStrategyMap(buttonCloseCssStrategy))
     return result.join(' ').trim()
   })
 

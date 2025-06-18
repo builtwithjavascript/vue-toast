@@ -1,9 +1,9 @@
 import type { App, Plugin as VuePLugin } from 'vue'
-import type { IToastParams } from './useToast'
+import type { TToastType, IToastParams } from './types'
 import { useToast } from './useToast'
 import ToastPortal from './ToastPortal.vue'
 
-export { IToastParams, useToast }
+export { TToastType, IToastParams, useToast }
 
 export const ToastPlugin: VuePLugin = {
   install(app: App) {

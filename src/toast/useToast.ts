@@ -1,6 +1,6 @@
 import { eventBus, eventKeys } from './event-bus'
 import { toastPositions } from './Constants'
-import { defineComponent } from 'vue'
+import type { IToastParams } from './types'
 
 const getNextId = () => {
   const array = new Uint32Array(1)
@@ -9,23 +9,14 @@ const getNextId = () => {
   return str
 }
 
-export type IToastParams = {
-  id?: string
-  group?: string
-  alertType?: string
-  message: string
-  sticky?: boolean
-  timeout?: number
-  toastComponent?: ReturnType<typeof defineComponent>
-}
-
 const showToast = async (params: IToastParams) => {
   // sanitize params
   const options = {
     ...params,
     id: getNextId(),
     group: params.group || 'top',
-    alertType: params.alertType || 'info',
+    type: params.type || 'normal',
+    category: params.category || 'info',
     sticky: params.sticky || false,
   } as IToastParams
 
