@@ -2,8 +2,6 @@
   "name": "@builtwithjavascript/vue-toast",
   "version": "1.0.1",
   "scripts": {
-    "dev": "vite",
-    "watch": "vite build --watch",
     "clean": "rm -rf ./dist",
     "build-types": "vue-tsc --declaration --emitDeclarationOnly --outDir ./dist",
     "build-lib": "vite build",
