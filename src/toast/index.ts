@@ -1,5 +1,6 @@
 import type { App, Plugin as VuePLugin } from 'vue'
 import type { TToastType, IToastParams } from './types'
+import { createVNode, render } from 'vue'
 import { useToast } from './useToast'
 import ToastPortal from './ToastPortal.vue'
 
@@ -10,5 +11,11 @@ export const ToastPlugin: VuePLugin = {
     const { showToast } = useToast()
     app.config.globalProperties.$showToast = showToast
     app.component('ToastPortal', ToastPortal)
+
+    // Programmatically mount ToastPortal
+    const container = document.createElement('div')
+    document.body.appendChild(container)
+    const vnode = createVNode(ToastPortal)
+    render(vnode, container)
   },
 }
