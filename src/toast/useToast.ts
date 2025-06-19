@@ -1,4 +1,4 @@
-import { eventBus, eventKeys } from './event-bus'
+import { useEventBus } from './event-bus'
 import { toastPositions } from './Constants'
 import type { IToastParams } from './types'
 
@@ -20,7 +20,7 @@ const showToast = async (params: IToastParams) => {
     sticky: params.sticky || false,
   } as IToastParams
 
-  eventBus.emit(eventKeys.showToast, options)
+  useEventBus().emit('show-toast', options)
 }
 
 export const useToast = () => {

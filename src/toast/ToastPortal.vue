@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import { defineComponent, reactive, computed, onMounted, shallowRef } from 'vue'
+  import { defineComponent, reactive, computed, onMounted, onUnmounted, shallowRef } from 'vue'
   import type { IToastParams } from './types'
-  import { eventBus, eventKeys } from './event-bus'
+  import { useEventBus } from './event-bus'
   import ElAlertPanel from './ElAlertPanel.vue'
 
   const DEFAULT_TIMEOUT = 3000
@@ -74,7 +74,8 @@
     return results
   })
 
-  const addToast = (params: IToastParams) => {
+  const addToast = (ev: CustomEvent) => {
+    const params: IToastParams = ev.detail
     const { toastComponent, sticky } = params
     if (toastComponent) {
       state.currentToastComponent = toastComponent
@@ -117,8 +118,12 @@
   }
 
   onMounted(() => {
-    // @ts-ignore
-    eventBus.on(eventKeys.showToast, addToast)
+    useEventBus().on('show-toast', addToast)
+  })
+
+  onUnmounted(() => {
+    useEventBus().off('show-toast', addToast)
+    state.items = []
   })
 </script>
 

@@ -1,6 +1,21 @@
 # vue-toast
 Toast notification Vue component based on Tailwind
 
+## Install
+Install with npm:
+`npm i -D @builtwithjavascript/vue-toast`
+
+Then modify your main.ts file:
+```typescript
+// add this line:
+import { ToastPlugin } from '@builtwithjavascript/vue-toast'
+
+createApp(App)
+  .use(ToastPlugin as any) // <-- add this line
+  .mount('#app')
+```
+
+
 ## Example
 ```typescript
   import type { TToastType, IToastParams } from '@builtwithjavascript/vue-toast'
